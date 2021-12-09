@@ -233,12 +233,12 @@
         }
         $.ajax({
             type: 'POST',
-            url: `/signup`,
+            url: `http://13.209.64.133/signup`,
             contentType: "application/json",
             data: JSON.stringify(info),
             success: function (response) {
                 alert("회원가입이 완료되었습니다!!");
-                location.href = '/user/login';
+                location.href = 'login.html';
             }
         })
     }
@@ -251,14 +251,14 @@
         alert(username + "/" + password);
         $.ajax({
             type: 'POST',
-            url: `/login`,
+            url: `http://13.209.64.133/login`,
             contentType: "application/json",
             data: JSON.stringify(info),
             success: function (response) {
                 localStorage.setItem("token", response['token']);
                 localStorage.setItem("username", response['username']);
                 alert("로그인이 되었습니다.")
-                location.href = '/';
+                location.href = 'index.html';
             }
         })
     }
