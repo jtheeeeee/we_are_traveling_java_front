@@ -233,7 +233,7 @@
         // }
         $.ajax({
             type: 'GET',
-            url: `https://www.weling.site/signup`,
+            url: `https://api.weling.site/signup`,
             contentType: false,
             // data: JSON.stringify(info),
             success: function (response) {
@@ -251,7 +251,7 @@
         alert(username + "/" + password);
         $.ajax({
             type: 'POST',
-            url: `http://13.209.64.133/login`,
+            url: `https://api.weling.site/login`,
             contentType: "application/json",
             data: JSON.stringify(info),
             success: function (response) {
@@ -269,7 +269,7 @@
     <!-- Sign Up -->
     <div class="container__form container--signup">
         <div action="#" class="form" id="form1">
-            <h2 class="form__title">Sign Up1</h2>
+            <h2 class="form__title">Sign Up2</h2>
             <input type="text" id= "username"  placeholder="Username" class="input" />
             <input type="email" id = "email" placeholder="Email" class="input" />
             <input type="password" id="password" placeholder="Password" class="input" />
@@ -280,7 +280,7 @@
     <!-- Sign In -->
     <div class="container__form container--signin">
         <div action="#" class="form" id="form2">
-            <h2 class="form__title">Sign In</h2>
+            <h2 class="form__title">Sign In2</h2>
             <input type="text" id= "username_in"  placeholder="Username" class="input" />
             <input type="password" id = "password_in" placeholder="Password" class="input" />
             <a href="#" class="link">Forgot your password?</a>
