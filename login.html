@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>We are Traveling </title>
+    <title>We are Traveling</title>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
@@ -222,11 +222,27 @@
         }
     }
 
+    #login-kakao-btn {
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 12px 24px;
+        color: white;
+        border: solid black 2px;
+        background: black;
+        transition-property: color, background;
+        transition-duration: 0.15s;
+        transition-timing-function: ease-out;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+
+
+
 
 </style>
 <script>
     function signUp(){
-
         let info = {
             username: $("#username").val(),
             password: $("#password").val(),
@@ -242,17 +258,6 @@
                 location.href = 'login.html';
             }
         })
-
-        // $.ajax({
-        //     type: 'GET',
-        //     url: `https://api.weling.site/signup`,
-        //     contentType: false,
-        //     // data: JSON.stringify(info),
-        //     success: function (response) {
-        //         alert("회원가입이 완료되었습니다!!");
-        //         // location.href = 'login.html';
-        //     }
-        // })
     }
 
     function signIn(){
@@ -260,7 +265,6 @@
             username: $("#username_in").val(),
             password:  $("#password_in").val()
         }
-        alert(username + "/" + password);
         $.ajax({
             type: 'POST',
             url: `https://api.weling.site/login`,
@@ -281,23 +285,26 @@
     <!-- Sign Up -->
     <div class="container__form container--signup">
         <div action="#" class="form" id="form1">
-            <h2 class="form__title">Sign Up3</h2>
+            <h2 class="form__title">Sign Up</h2>
             <input type="text" id= "username"  placeholder="Username" class="input" />
             <input type="email" id = "email" placeholder="Email" class="input" />
             <input type="password" id="password" placeholder="Password" class="input" />
-            <button class="btn" onclick="signUp()">Sign Up</button>
+            <button class="btn" onclick="signUp()">회원가입</button>
         </div>
     </div>
 
     <!-- Sign In -->
     <div class="container__form container--signin">
         <div action="#" class="form" id="form2">
-            <h2 class="form__title">Sign In2</h2>
+            <h2 class="form__title">Sign In</h2>
             <input type="text" id= "username_in"  placeholder="Username" class="input" />
             <input type="password" id = "password_in" placeholder="Password" class="input" />
             <a href="#" class="link">Forgot your password?</a>
-            <button class="btn" onclick="signIn()">Sign In</button>
-            <button class="btn" onclick="location.href='index.html'">with kakaotalk</button>
+            <button class="btn" onclick="signIn()">로그인</button>
+            <button id="login-kakao-btn" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=6d4b39ffff12278db5d379d6a59516ad&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code'" style="
+    margin-top: 30px;">
+                카카오로 로그인하기
+            </button>
         </div>
     </div>
 
@@ -305,10 +312,10 @@
     <div class="container__overlay">
         <div class="overlay">
             <div class="overlay__panel overlay--left">
-                <button class="btn" id="signIn">Sign In</button>
+                <button class="btn" id="signIn">로그인</button>
             </div>
             <div class="overlay__panel overlay--right">
-                <button class="btn" id="signUp">Sign Up</button>
+                <button class="btn" id="signUp">회원가입</button>
             </div>
         </div>
     </div>
