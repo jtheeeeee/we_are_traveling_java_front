@@ -369,7 +369,7 @@
                 $("#budget").html(budget)
                 $("#address").html(locationKey[1])
                 $("#comment-list").empty();
-                $("#total").html(total)
+                $("#total").html("Total: "+total+"원")
                 for (let i = 0; i < response['comments'].length; i++) {
                     makeListComment(response['comments'][i])
                 }
@@ -563,8 +563,8 @@
                         </div>
                     </div>
                 </div>
-                <p class="seconddetail">Total</p>
-                <p class="seconddetail" id="total"></p>
+                <p id="total" style="font-weight: bold;"></p>
+
 
 
 
