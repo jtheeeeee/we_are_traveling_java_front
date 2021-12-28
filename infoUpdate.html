@@ -77,7 +77,6 @@
                 let entertainment = response["entertainment"]
                 let shopping = response["shopping"]
                 let others = response["others"]
-                let total =  response["total"]
                 let locationkey = response["locationKey"]
                 src_img=response['imageUrl']
                 $("#username").html(username);
@@ -91,7 +90,6 @@
                 $('#entertainment').attr('value', entertainment);
                 $('#shopping').attr('value', shopping);
                 $('#others').attr('value', others);
-                $('#total').attr('value', total);
                 $('#location').html(locationkey);
 
             }
@@ -114,7 +112,8 @@
         data.append("entertainment",$("#entertainment").val());
         data.append("shopping", $("#shopping").val());
         data.append("others", $("#others").val());
-        data.append("total",$("#total").val());
+        let total = parseInt($("#accommodation").val())+parseInt($("#transportation").val())+parseInt($("#food").val())+parseInt($("#entertainment").val())+parseInt($("#shopping").val())+parseInt($("#others").val());
+        data.append("total",total);
         data.append("locationKey",$("#location").html());
         for (let value of data.values()) {
             console.log(value);
@@ -432,7 +431,7 @@
             </div>
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">교툥</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">교통</span>
                 </div>
                 <input type="text" id="transportation" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
             </div>
@@ -459,12 +458,6 @@
                     <span class="input-group-text" id="inputGroup-sizing-sm">기타</span>
                 </div>
                 <input type="text" id="others" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <div class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">합계</span>
-                </div>
-                <input type="text" id="total" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
             </div>
         </div>
         <hr>
