@@ -2,20 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+    <!--    <link href="styles/detail.css" rel="stylesheet" type="text/css" />-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+    <!--    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">-->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
 
 </head>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
 <!--        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
@@ -28,6 +39,250 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eff4e394591b6d8e50e7f62418d53f6c&libraries=services"></script>
+
+
+<style>
+    body {
+        margin: 0;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    li {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+    }
+
+    .container {
+        width: 100%;
+        margin: 10px auto;
+    }
+
+
+
+    li .menu-list {
+        margin-right: 10px;
+        padding: 10px;
+        color: black;
+        text-decoration: none;
+        color: gray;
+    }
+
+    .first {
+        width: 50%;
+        margin-right: 5px;
+    }
+
+    .second {
+        width: 50%;
+    }
+
+
+
+    #one {
+        display: flex;
+    }
+
+    #one img {
+        width: 95%;
+    }
+
+
+    .coffeename {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .coffeename2 {
+        font-size: 13px;
+        margin-top: 3px;
+        padding-bottom: 5px;
+        margin-left: 520px;
+        font-weight: bold;
+    }
+
+    .seconddetail {
+        padding-top: 17px;
+        border-top: 3px solid black;
+        font-size: 13px;
+        font-weight: bold;
+        padding-bottom: 30px;
+        border-bottom: 1px solid lightgray;
+        margin: 0;
+    }
+
+
+    .productdetail span {
+        margin-left: 12px;
+        margin-right: 12px;
+        font-size: 17px;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+
+    .productdetail2 ul {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 5px 10px 3px;
+        margin: 0 15px 0 15px;
+    }
+
+    .productdetail2 li {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .allegy {
+        display: flex;
+        background-color: rgb(243, 240, 240);
+        height: 45px;
+        align-items: center;
+        padding-left: 10px;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+    .reviewnav {
+        font-size: 20px;
+        font-weight: bold;
+        border-bottom: 1px solid lightgray;
+        padding-top: 10px;
+        padding-bottom: 15px;
+    }
+
+    .id {
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .ment {
+        font-size: 13px;
+        margin-left: 5px;
+    }
+
+    .reviewcomment {
+        font-size: 13px;
+        font-weight: bold;
+        color: rgb(151, 143, 143);
+        background-color: rgb(243, 240, 240);
+        margin-top: 20px;
+        padding: 7px;
+        width: 100%;
+        border: 1px solid rgb(243, 240, 240);
+    }
+
+    .bottomzone ul {
+        display: flex;
+        flex-direction: column;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .bottomzone li {
+        padding-bottom: 8px;
+    }
+
+    .wrap {
+        padding: 1.5rem;
+        background-color: whitesmoke;
+    }
+    nav {
+        padding: 16px 36px;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 6px 16px #f0f3f4;
+    }
+
+    nav container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    nav container ul, nav container .nav_menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        gap: 36px;
+    }
+
+    nav container li a {
+        padding: 8px;
+        letter-spacing: 0.2rem;
+        font-size: 0.9rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #999999;
+        transition: color 150ms ease-out;
+    }
+
+    nav container li a:hover {
+        color: #030303;
+    }
+
+    .logo-text {
+        font-size: 1.4rem;
+        line-height: 0.8;
+        letter-spacing: 0.6rem;
+        font-weight: 700;
+        position: relative;
+        text-transform: uppercase;
+    }
+
+    .logo-text:after {
+        content: "";
+        width: 6px;
+        height: 6px;
+        position: absolute;
+        background: black;
+        top: calc(100% / 2.7);
+        margin-left: 12px;
+        border-radius: 2px;
+    }
+
+    .nav--button {
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 12px 24px;
+        color: white;
+        border: solid black 2px;
+        background: black;
+        transition-property: color, background;
+        transition-duration: 0.15s;
+        transition-timing-function: ease-out;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .nav--button:hover {
+        color: black;
+        background: transparent;
+    }
+    .align {
+        display: flex;
+        justify-content: flex-end;
+
+    }
+
+
+
+
+
+</style>
 <script>
     let url =  new URL(document.URL);
     let idx = '';
@@ -122,25 +377,19 @@
     }
     function makeListComment(comment) {
 
-        let temp =`<div id="userinfo">
-        <div>${comment["username"]}</div>
-
-    </div>
-    <li class="list-group-item">${comment['comment']}</li>`
-        if(comment['username']==localStorage.getItem("username")){
-            temp=`<div id="userinfo">
-        <div>${comment["username"]}</div>
-        <button type="button" id="delete-button-comment" class="btn btn-primary" onclick="delete_comment(${comment["id"]})">삭제</button>
-        <button type="button" id="update-button-comment" class="btn btn-primary" onclick="update_set_comment(${comment["id"]})">수정</button>
-    </div>
-    <li class="list-group-item">${comment['comment']}</li>`
-        }
-
-        $("#comment-list").append(temp);
 
 
 
-        let tempHtml = `<div>${comment["username"]}</div><li class="list-group-item">${comment['comment']}</li>`;
+        let tempHtml = `<div class="comment" > <!-- comment class는 각각 하나의 댓글을 담아냄 -->
+                        <span class="id">${comment["username"]}</span>
+                        <span class="ment">${comment['comment']}</span>
+                        <div class="align">
+                        <span id="update-button-comment"  onclick="update_set_comment(${comment["id"]})"><i class="fas fa-edit"></i> </span>
+                        <span id="delete-button-comment"  onclick="delete_comment(${comment["id"]})"><i class="fas fa-trash-alt"></i> </span>
+                        </div>
+                       `;
+
+        $("#comment-list").append(tempHtml);
 
     }
 
@@ -171,128 +420,178 @@
 
     }
 
-   function update_set_comment(id){
-       $("#save-comment").hide();
-       $("#update-comment").show();
-       updateCommentId=id;
-       $.ajax({
-           type: "GET",
-           url: `https://api.weling.site/infoContents/comment?id=${id}`,
-           contentType: 'application/json; charset=utf-8',
-           data: {id:id},
-           success: function (response) {
-               $('#comment_txt').html(response['comment']);
-               console.log(response);
+    function update_set_comment(id){
+        $("#save-comment").hide();
+        $("#update-comment").show();
+        updateCommentId=id;
+        $.ajax({
+            type: "GET",
+            url: `https://api.weling.site/infoContents/comment?id=${id}`,
+            contentType: 'application/json; charset=utf-8',
+            data: {id:id},
+            success: function (response) {
+                $('#comment_txt').html(response['comment']);
+                console.log(response);
 
 
-           }
-       })
-   }
+            }
+        })
+    }
 
-   function updateComment(id_comment){
+    function updateComment(id_comment){
 
-       let comment = {
-           "id":url.searchParams.get('id'),
-           "username":username,
-           "comment":$("#comment_txt").val()
-       }
+        let comment = {
+            "id":url.searchParams.get('id'),
+            "username":username,
+            "comment":$("#comment_txt").val()
+        }
 
-       $.ajax({
-           type: "PUT",
-           url: `https://api.weling.site/infoContents/comment?id=${id_comment}`,
-           contentType: 'application/json; charset=utf-8',
-           data: JSON.stringify(comment),
-           success: function (response) {
-               alert("수정되었습니다.");
-               location.reload();
+        $.ajax({
+            type: "PUT",
+            url:  `https://api.weling.site/infoContents/comment?id=${id_comment}`,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(comment),
+            success: function (response) {
+                alert("수정되었습니다.");
+                location.reload();
 
 
-           }
-       })
+            }
+        })
 
-   }
+    }
 </script>
-<style>
-    #delete-button{
-        display:none;
-    }
-    /*#delete-button-comment{*/
-    /*    display:none;*/
-    /*}*/
 
-    #userinfo{
-        display:flex;
-        justify-content: space-between;
+
+
+<script>
+    $(document).ready(function () {
+        if (localStorage.getItem("username")) {
+            let username = localStorage.getItem("username");
+            $("#log-in").hide();
+            $("#log-out").show();
+        } else {
+            $("#log-in").show();
+            $("#log-out").hide();
+        }
+    });
+
+    function logout() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        location.href = 'index.html';
     }
 
-    #update-comment{
-        display:none;
-    }
-</style>
+    $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+        if (localStorage.getItem('token')) {
+            jqXHR.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
+        }
+    });
+
+
+</script>
+
 <body>
-<div class="form-group">
-    <label for="username"></label>
-    <div id="username"></div>
-</div>
-<div class="form-group">
-    <label for="title"></label>
-    <div id="title"></div>
-</div>
-<div class="form-group">
-    <label for="locationKey"></label>
-    <div id="locationKey"></div>
-    <div id="address"></div>
-</div>
-<div class="form-group">
-    <label for="content"></label>
-    <div id="content"></div>
-</div>
-<div class="form-group">
-    <label for="budget"></label>
-    <div id="budget"></div>
-    <div class="row my-2">
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <canvas id="myChart2"></canvas>
+
+<div class="wrap">
+    <nav>
+        <container>
+            <div class="logo-wrap">
+                <div class="logo-text">WELING</div>
+                <p style="
+                margin-top: 2px;
+                margin-bottom: 2px;
+                "><font size="2">WE ARE TRAVELING</font></p>
+
+            </div>
+            <div class="nav_menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="insert.html">Gallery</a></li>
+                    <li><a href="board.html">Community</a></li>
+                    <li><a href="https://diagnostic-chevre-17e.notion.site/f2f62d58bb9a4d659c2fc034e5c7a6b8">FAQ</a>
+                    </li>
+
+                </ul>
+                <button class="nav--button" id="log-in" onclick="location.href='login.html'">Log-in</button>
+                <button class="nav--button" id="log-out" onclick="logout()">Log-out</button>
+            </div>
+        </container>
+    </nav>
+
+    <div class="container" id="one">
+
+        <div class="first">
+
+            <img id="image"/>
+
+            <div class="form-group">
+                <label for="locationKey"></label>
+                <div id="locationKey"></div>
+
+            </div>
+
+            <div class="allegy" id="address"></div>
+        </div>
+
+
+        <div class="second">
+            <br>
+
+            <div id="fifth">
+                <div class="emojiright">
+                    <p class="coffeename" id="title"></p>
+                    <p class="coffeename2" id="username" ></p>
+
+                </div>
+                <div id="heart2" style="margin-left: 530px">
+                    <a href="#"><i class="far fa-heart" id="heart3"></i></a>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<hr/>
-<img id="image"/>
-<hr>
-<div id = "like">
 
-</div>
-<span id="like-icon-modal-1" onclick="toggleLike(${likeInfo.articleId})"><i class="fas fa-heart" style="color: red"></i> 좋아요 : ${num2str(likeInfo.likeCount)}</span>
-<span id="like-icon-modal-2" onclick="toggleLike(${likeInfo.articleId})"><i class="far fa-heart" style="color: red"></i> 좋아요 : ${num2str(likeInfo.likeCount)}</span>
-<hr>
-
-<div>
-    <p>Comment</p>
-    <textarea class="form-control" id="comment_txt" rows="3"></textarea>
-    <button type="button" class="btn btn-primary" id = "save-comment" onclick="setComment()">댓글작성</button>
-    <button type="button" class="btn btn-primary" id = "update-comment" onclick="updateComment(`${updateCommentId}`)">댓글수정</button>
-</div>
-<div id="comment_list">
-    <hr/>
-    <ul class="list-group" id="comment-list"></ul>
+            <p class="seconddetail" id="content"></p>
 
 
-</div>
-<div>
-    <button type="button" class="btn btn-primary" onclick="location.href='insert.html'">목록으로</button>
-    <button type="button" id="delete-button" class="btn btn-primary" onclick="delete_content()">삭제</button>
-    <button type="button" id="update-button" class="btn btn-primary" onclick="location.href=`infoUpdate.html?id=${idx}`">수정</button>
-</div>
+            <div style= "width: 700px"  class="form-group">
+                <div class="row my-2" >
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="myChart2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <p class="reviewnav">Comment</p>
+
+                <div class="Allcomment" id="comment-list">
+
+                </div>
+
+
+                <textarea class="reviewcomment" placeholder="댓글을 입력해주세요" id="comment_txt" rows="1"></textarea>
+                <button class="deletebutton" style="margin-bottom: 15px" id = "save-comment" onclick="setComment()">댓글작성</button>
+                <button class="deletebutton" id = "update-comment" onclick="updateComment(`${updateCommentId}`)">댓글수정</button>
+
+
+
+                <div style="margin-left: 485px" >
+                    <button type="button" class="btn btn-primary" onclick="location.href='insert.html'">목록으로</button>
+                    <button type="button" id="delete-button" class="btn btn-primary" onclick="delete_content()">삭제</button>
+                    <button type="button" id="update-button" class="btn btn-primary" onclick="location.href=`infoUpdate.html?id=${idx}`">수정</button>
+                </div>
+
+            </div>
 
 </body>
 <script>
 
     function map_set(address){
-        let temp =`<div id="map" style="width:100%;height:400px;width:500px;"></div>`
+        let temp =`<div id="map" style="width:100%;height:300px;width:523px;"></div>`
         $("#locationKey").html(temp)
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
