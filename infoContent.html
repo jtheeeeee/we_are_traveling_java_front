@@ -38,7 +38,8 @@
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eff4e394591b6d8e50e7f62418d53f6c&libraries=services"></script>
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eff4e394591b6d8e50e7f62418d53f6c&libraries=services"></script>
 
 
 <style>
@@ -68,7 +69,6 @@
     }
 
 
-
     li .menu-list {
         margin-right: 10px;
         padding: 10px;
@@ -85,7 +85,6 @@
     .second {
         width: 50%;
     }
-
 
 
     #one {
@@ -154,6 +153,7 @@
         border-radius: 3px;
         font-weight: bold;
     }
+
     .reviewnav {
         font-size: 20px;
         font-weight: bold;
@@ -183,21 +183,12 @@
         border: 1px solid rgb(243, 240, 240);
     }
 
-    .bottomzone ul {
-        display: flex;
-        flex-direction: column;
-        margin-top: 0;
-        padding: 0;
-    }
-
-    .bottomzone li {
-        padding-bottom: 8px;
-    }
 
     .wrap {
         padding: 1.5rem;
         background-color: whitesmoke;
     }
+
     nav {
         padding: 16px 36px;
         background: #fff;
@@ -272,6 +263,7 @@
         color: black;
         background: transparent;
     }
+
     .align {
         display: flex;
         justify-content: flex-end;
@@ -279,23 +271,69 @@
     }
 
 
-    #delete-button{
-        display:none;
-    }
-
-    #update-button{
+    #delete-button {
         display: none;
     }
 
+    #update-button {
+        display: none;
+    }
+
+    .bottomzone {
+        display: flex;
+        background-color: white;
+        padding: 20px;
+        justify-content: flex-start;
+        color: snow;
+        font-size: 15px;
+        font-weight: bold;
+
+    }
+
+    /* 최하단부의 배너를 포괄하는 div의 CSS*/
+    .copyright {
+        font-size: 0.7rem;
+        letter-spacing: 0.2rem;
+        color: #999999;
+        padding-top: 12px;
+        text-transform: uppercase;
+    }
+
+    .social_links {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2px;
+        margin-right: 24px;
+    }
+
+    .social_links a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        width: 32px;
+        height: 32px;
+        border-radius: 5px;
+        background: transparent;
+        transition-property: background, opacity;
+        transition-duration: 0.25s;
+        transition-timing-function: ease-out;
+    }
+
+    .social_links a:hover {
+        background: #fff;
+        color: #999999;
+    }
 
 </style>
 <script>
-    let url =  new URL(document.URL);
+    let url = new URL(document.URL);
     let idx = '';
-    let username =localStorage.getItem("username");
+    let username = localStorage.getItem("username");
     let id = url.searchParams.get('id')
-    let updateCommentId='';
-    $(document).ready(function(){
+    let updateCommentId = '';
+    $(document).ready(function () {
         makeInfo();
         idx = getParam('id');
         $("#save-comment").show();
@@ -323,11 +361,11 @@
         return results[1] || 0;
     }
 
-    function setComment(){
+    function setComment() {
         let comment = {
-            "id":idx,
-            "username":username,
-            "comment":$("#comment_txt").val()
+            "id": idx,
+            "username": username,
+            "comment": $("#comment_txt").val()
         }
         $.ajax({
             type: "POST",
@@ -343,14 +381,14 @@
     }
 
 
-    function makeInfo(){
+    function makeInfo() {
         $.ajax({
             type: 'GET',
             url: `https://api.weling.site/infoContents?id=${id}`,
             contentType: "application/json",
             success: function (response) {
-                let username =  response["username"]
-                if (username == localStorage.getItem("username")){
+                let username = response["username"]
+                if (username == localStorage.getItem("username")) {
                     $("#delete-button").show();
                     $("#update-button").show();
                 }
@@ -362,30 +400,29 @@
                 let entertainment = response["entertainment"]
                 let shopping = response["shopping"]
                 let others = response["others"]
-                let total =  response["total"]
-                let locationKey =response["locationKey"].split(",")
+                let total = response["total"]
+                let locationKey = response["locationKey"].split(",")
                 console.log(locationKey)
                 map_set(locationKey)
-                data_set=[accommodation,transportation,food,entertainment,shopping,others]
+                data_set = [accommodation, transportation, food, entertainment, shopping, others]
                 chart_a(data_set)
-                let budget = accommodation +"/"+transportation+"/"+food+"/"+entertainment+"/"+shopping+"/"+others+"/"+total
+                let budget = accommodation + "/" + transportation + "/" + food + "/" + entertainment + "/" + shopping + "/" + others + "/" + total
                 $("#username").html(username);
-                $("#image").attr("src",response['imageUrl']);
+                $("#image").attr("src", response['imageUrl']);
                 $("#title").html(title);
                 $("#content").html(content)
                 $("#budget").html(budget)
                 $("#address").html(locationKey[1])
                 $("#comment-list").empty();
-                $("#total").html("Total: "+total+"원")
+                $("#total").html("Total: " + total + "원")
                 for (let i = 0; i < response['comments'].length; i++) {
                     makeListComment(response['comments'][i])
                 }
             }
         })
     }
+
     function makeListComment(comment) {
-
-
 
 
         let tempHtml = `<div class="comment" > <!-- comment class는 각각 하나의 댓글을 담아냄 -->
@@ -393,8 +430,8 @@
                         <span class="ment">${comment['comment']}</span>
                        `;
 
-        if(comment['username']==localStorage.getItem("username")){
-            tempHtml=`<div class="comment" >
+        if (comment['username'] == localStorage.getItem("username")) {
+            tempHtml = `<div class="comment" >
                       <span class="id">${comment["username"]}</span>
                       <span class="ment">${comment['comment']}</span>
                       <div class="align">
@@ -408,12 +445,12 @@
 
     }
 
-    function delete_content(){
+    function delete_content() {
         $.ajax({
             type: "DELETE",
             url: `https://api.weling.site/infoContents?id=${id}`,
             contentType: 'application/json; charset=utf-8',
-            data: {id:id},
+            data: {id: id},
             success: function (response) {
                 alert("삭제되었습니다.");
                 window.location = "insert.html";
@@ -421,12 +458,12 @@
         })
     }
 
-    function delete_comment(id){
+    function delete_comment(id) {
         $.ajax({
             type: "DELETE",
             url: `https://api.weling.site/infoContents/comment?id=${id}`,
             contentType: 'application/json; charset=utf-8',
-            data: {id:id},
+            data: {id: id},
             success: function (response) {
                 alert("삭제되었습니다.");
                 location.reload();
@@ -435,15 +472,15 @@
 
     }
 
-    function update_set_comment(id){
+    function update_set_comment(id) {
         $("#save-comment").hide();
         $("#update-comment").show();
-        updateCommentId=id;
+        updateCommentId = id;
         $.ajax({
             type: "GET",
             url: `https://api.weling.site/infoContents/comment?id=${id}`,
             contentType: 'application/json; charset=utf-8',
-            data: {id:id},
+            data: {id: id},
             success: function (response) {
                 $('#comment_txt').html(response['comment']);
                 console.log(response);
@@ -453,17 +490,17 @@
         })
     }
 
-    function updateComment(id_comment){
+    function updateComment(id_comment) {
 
         let comment = {
-            "id":url.searchParams.get('id'),
-            "username":username,
-            "comment":$("#comment_txt").val()
+            "id": url.searchParams.get('id'),
+            "username": username,
+            "comment": $("#comment_txt").val()
         }
 
         $.ajax({
             type: "PUT",
-            url:  `https://api.weling.site/infoContents/comment?id=${id_comment}`,
+            url: `https://api.weling.site/infoContents/comment?id=${id_comment}`,
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(comment),
             success: function (response) {
@@ -476,7 +513,6 @@
 
     }
 </script>
-
 
 
 <script>
@@ -556,7 +592,7 @@
             <div id="fifth">
                 <div class="emojiright">
                     <p class="coffeename" id="title"></p>
-                    <p class="coffeename2" id="username" ></p>
+                    <p class="coffeename2" id="username"></p>
 
                 </div>
                 <div id="heart2" style="margin-left: 530px">
@@ -567,8 +603,8 @@
             <p class="seconddetail" id="content"></p>
 
 
-            <div style= "width: 700px"  class="form-group">
-                <div class="row my-2" >
+            <div style="width: 700px" class="form-group">
+                <div class="row my-2">
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
@@ -580,9 +616,6 @@
                 <p id="total" style="font-weight: bold;"></p>
 
 
-
-
-
                 <p class="reviewnav">Comment</p>
 
                 <div class="Allcomment" id="comment-list">
@@ -591,24 +624,64 @@
 
 
                 <textarea class="reviewcomment" placeholder="댓글을 입력해주세요" id="comment_txt" rows="1"></textarea>
-                <button class="deletebutton" style="margin-bottom: 15px" id = "save-comment" onclick="setComment()">댓글작성</button>
-                <button class="deletebutton" id = "update-comment" onclick="updateComment(`${updateCommentId}`)">댓글수정</button>
+                <button class="deletebutton" style="margin-bottom: 15px" id="save-comment" onclick="setComment()">댓글작성
+                </button>
+                <button class="deletebutton" id="update-comment" onclick="updateComment(`${updateCommentId}`)">댓글수정
+                </button>
 
 
-
-                <div style="margin-left: 485px" >
+                <div style="margin-left: 485px">
                     <button type="button" class="btn btn-primary" onclick="location.href='insert.html'">목록으로</button>
-                    <button type="button" id="delete-button" class="btn btn-primary" onclick="delete_content()">삭제</button>
-                    <button type="button" id="update-button" class="btn btn-primary" onclick="location.href=`infoUpdate.html?id=${idx}`">수정</button>
+                    <button type="button" id="delete-button" class="btn btn-primary" onclick="delete_content()">삭제
+                    </button>
+                    <button type="button" id="update-button" class="btn btn-primary"
+                            onclick="location.href=`infoUpdate.html?id=${idx}`">수정
+                    </button>
                 </div>
 
             </div>
+        </div>
+    </div>
+</div>
+<footer> <!-- 최하단부의 배너를 담는 fotter 태그 -->
+    <div class="bottomzone">
+        <div class="social_links">
+            <a id="help" href="https://github.com/burninghering">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
+                     viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+            </a>
+            <a id="instagram" href="https://github.com/jtheeeeee">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
+                     viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+            </a>
+            <a id="twitter" href="https://github.com/seongho-w">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
+                     viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+            </a>
+            <a id="git_hub" href="https://github.com/seonghyeok01">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
+                     viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+            </a>
+        </div>
 
+        <div class="copyright">
+            <span class="year">2021</span> WELING - All rights reserved.
+        </div>
+    </div>
+</footer>
 </body>
 <script>
 
-    function map_set(address){
-        let temp =`<div id="map" style="width:100%;height:300px;width:523px;"></div>`
+    function map_set(address) {
+        let temp = `<div id="map" style="width:100%;height:300px;width:523px;"></div>`
         $("#locationKey").html(temp)
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
@@ -619,7 +692,7 @@
         var geocoder = new kakao.maps.services.Geocoder();
 
 // 주소로 좌표를 검색합니다
-        geocoder.addressSearch(address[1], function(result, status) {
+        geocoder.addressSearch(address[1], function (result, status) {
 
             // 정상적으로 검색이 완료됐으면
             if (status === kakao.maps.services.Status.OK) {
@@ -643,13 +716,14 @@
             }
         });
     }
-    function chart_a( data_set){
+
+    function chart_a(data_set) {
         data = {
             datasets: [{
-                backgroundColor: ["#fb9a99", "#fdbf6f", "#ffeea6", "#b2df8a","#a6cee3", "#CEA3FAFF"],
+                backgroundColor: ["#fb9a99", "#fdbf6f", "#ffeea6", "#b2df8a", "#a6cee3", "#CEA3FAFF"],
                 data: data_set
             }], // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
-            labels: ["숙박","교통","음식","관광","쇼핑","기타"]
+            labels: ["숙박", "교통", "음식", "관광", "쇼핑", "기타"]
         }; //가운데 구멍이 없는 파이형 차트
         // 도넛형 차트 var ctx2 = document.getElementById("myChart2");
         var ctx2 = document.getElementById("myChart2");
