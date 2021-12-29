@@ -391,11 +391,18 @@
         let tempHtml = `<div class="comment" > <!-- comment class는 각각 하나의 댓글을 담아냄 -->
                         <span class="id">${comment["username"]}</span>
                         <span class="ment">${comment['comment']}</span>
-                        <div class="align">
-                        <span id="update-button-comment"  onclick="update_set_comment(${comment["id"]})"><i class="fas fa-edit"></i> </span>
-                        <span id="delete-button-comment"  onclick="delete_comment(${comment["id"]})"><i class="fas fa-trash-alt"></i> </span>
-                        </div>
                        `;
+
+        if(comment['username']==localStorage.getItem("username")){
+            tempHtml=`<div class="comment" >
+                      <span class="id">${comment["username"]}</span>
+                      <span class="ment">${comment['comment']}</span>
+                      <div class="align">
+                      <span id="update-button-comment"  onclick="update_set_comment(${comment["id"]})"><i class="fas fa-edit"></i> </span>
+                      <span id="delete-button-comment"  onclick="delete_comment(${comment["id"]})"><i class="fas fa-trash-alt"></i> </span>
+                      </div>`;
+        }
+
 
         $("#comment-list").append(tempHtml);
 
