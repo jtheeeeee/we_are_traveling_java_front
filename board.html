@@ -24,7 +24,7 @@
     <!-- 구글폰트 -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-    <link rel="stylesheet" href="/css/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="bootstrap-tagsinput.css">
     <script src="bootstrap-tagsinput.js"></script>
 
     <title>COMMUNITY</title>
@@ -195,7 +195,7 @@
 
             let tempHtml = ` <tr>
                       <th scope="row">${index}</th>
-                      <td><a href="view?idx=${board['idx']}">${board['title']}</td>
+                      <td><a href="https://api.weling.site/view?idx=${board['idx']}">${board['title']}</td>
                       <td>${board['comments'].length}</td>
                       <td>${tags}</td>
                       <td>${board['createdAt']}</td>
