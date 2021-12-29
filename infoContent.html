@@ -279,7 +279,13 @@
     }
 
 
+    #delete-button{
+        display:none;
+    }
 
+    #update-button{
+        display: none;
+    }
 
 
 </style>
@@ -294,7 +300,7 @@
         idx = getParam('id');
         $("#save-comment").show();
         $("#update-comment").hide();
-        showLike();
+        // showLike();
     })
     // function showLike(){
     //     alert('show')
@@ -346,6 +352,7 @@
                 let username =  response["username"]
                 if (username == localStorage.getItem("username")){
                     $("#delete-button").show();
+                    $("#update-button").show();
                 }
                 let title = response["title"]
                 let content = response["content"]
