@@ -231,7 +231,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "https://api.weling.site/board_insert.html",
+                url: "https://api.weling.site/board",
                 processData: false,
                 contentType: false,
                 data: data,
@@ -241,6 +241,18 @@
                 }
             })
         }
+
+        function logout() {
+            localStorage.removeItem("token");
+            localStorage.removeItem("username");
+            location.href = '/';
+        }
+
+        $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+            if (localStorage.getItem('token')) {
+                jqXHR.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
+            }
+        });
     </script>
 </head>
 <body>
@@ -263,7 +275,7 @@
                 </li>
             </ul>
 
-            <button class="nav--button" id="log-in" onclick="location.href='/user/login'">Log-in</button>
+            <button class="nav--button" id="log-in" onclick="location.href='login.html'">Log-in</button>
             <button class="nav--button" id="log-out" onclick="logout()">Log-out</button>
         </div>
     </container>
